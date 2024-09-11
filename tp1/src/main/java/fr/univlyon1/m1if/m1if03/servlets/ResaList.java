@@ -4,6 +4,10 @@ import fr.univlyon1.m1if.m1if03.classes.Resa;
 
 import fr.univlyon1.m1if.m1if03.classes.User;
 import fr.univlyon1.m1if.m1if03.exceptions.MissingParameterException;
+import jakarta.servlet.Servlet;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,7 +34,15 @@ public class ResaList extends HttpServlet {
     DateTimeFormatter timeOutputFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
     //TODO Placer la map dans le contexte
-    private final List<Resa> resas = new ArrayList<>();
+    private List<Resa> resas ;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        ServletContext context = config.getServletContext();
+        resas = new ArrayList<>();
+        context.setAttribute("resas", resas);
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

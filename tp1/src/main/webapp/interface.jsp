@@ -10,7 +10,8 @@
 <body>
 <header>
     <h1 class="header-titre">Réservation de courts de tennis</h1>
-    <p class="header-user">Bonjour <strong><a href="user.jsp">${sessionScope.user.login}</a></strong>,<br>
+    <jsp:useBean id="user" type="fr.univlyon1.m1if.m1if03.classes.User" scope="session" />
+    <p class="header-user">Bonjour <strong><a href="user.jsp"><%= user.getName()%></a></strong>,<br>
         il y a actuellement <%=((Map<?, ?>) (application.getAttribute("users"))).size()%> utilisateur(s) connect&eacute;(s).
     </p>
 </header>
