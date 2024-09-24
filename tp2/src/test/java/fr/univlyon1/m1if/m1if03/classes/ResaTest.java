@@ -11,7 +11,7 @@ class ResaTest {
     private final User toto = new User("toto", "Toto");
     private final User titi = new User("titi", "Titi");
     private final User tutu = new User("tutu", "Tutu");
-    private final Resa resa = new Resa("test Resa", toto, LocalDateTime.of(2024, 9, 4, 14, 0, 0), Duration.ofMinutes(60));
+    private final Resa resa = new Resa("test Resa", toto.getLogin(), LocalDateTime.of(2024, 9, 4, 14, 0, 0), Duration.ofMinutes(60));
 
     @Test
     void testGetTitle() {
@@ -27,13 +27,13 @@ class ResaTest {
     @Test
     void testIsCompleted() {
         assertFalse(resa.isCompleted());
-        resa.addPlayer(titi);
+        resa.addPlayer(titi.getLogin());
         assertTrue(resa.isCompleted());
     }
 
     @Test
     void testEquals() {
-        Resa resa2 = new Resa("test Resa 2", titi, LocalDateTime.of(2024, 9, 4, 14, 0, 0), Duration.ofMinutes(60));
+        Resa resa2 = new Resa("test Resa 2", titi.getLogin(), LocalDateTime.of(2024, 9, 4, 14, 0, 0), Duration.ofMinutes(60));
         assertNotEquals(resa, resa2);
     }
 
@@ -49,9 +49,9 @@ class ResaTest {
 
     @Test
     void testAddPlayer() {
-        resa.addPlayer(titi);
-        resa.addPlayer(tutu);
-        assertTrue(resa.getPlayers().contains(titi));
-        assertFalse(resa.getPlayers().contains(tutu));
+        resa.addPlayer(titi.getLogin());
+        resa.addPlayer(tutu.getLogin());
+        assertTrue(resa.getPlayerLogins().contains(titi.getLogin()));
+        assertFalse(resa.getPlayerLogins().contains(tutu.getLogin()));
     }
 }

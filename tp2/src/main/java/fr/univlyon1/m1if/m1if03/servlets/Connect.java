@@ -3,6 +3,7 @@ package fr.univlyon1.m1if.m1if03.servlets;
 import fr.univlyon1.m1if.m1if03.classes.User;
 
 import fr.univlyon1.m1if.m1if03.daos.Dao;
+import fr.univlyon1.m1if.m1if03.daos.ResaDao;
 import fr.univlyon1.m1if.m1if03.daos.UserDao;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
@@ -29,6 +30,7 @@ public class Connect extends HttpServlet {
 
     // Map d'objets User
     private final Dao<User> users = new UserDao();
+    private final ResaDao resas = new ResaDao();
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -37,6 +39,7 @@ public class Connect extends HttpServlet {
         //Récupère le contexte applicatif et y place les variables globales
         ServletContext context = config.getServletContext();
         context.setAttribute("users", users);
+        context.setAttribute("resas", resas);
     }
 
     @Override

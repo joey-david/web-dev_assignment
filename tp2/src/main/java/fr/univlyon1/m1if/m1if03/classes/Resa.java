@@ -22,36 +22,36 @@ public class Resa {
     private String title;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private final List<User> players;
+    private final List<String> playerLogins;
     private final List<String> comments;
 
     /**
      * Création d'une réservation.
      * @param title Texte indiqué dans lea réservation
-     * @param creator Login de l'utilisateur créateur
+     * @param creatorLogin Login de l'utilisateur créateur
      * @param startDate Date et heure de début de la réservation
      * @param endDate Date et heure de fin de la réservation
      */
-    public Resa(String title, User creator, LocalDateTime startDate, LocalDateTime endDate) {
+    public Resa(String title, String creatorLogin, LocalDateTime startDate, LocalDateTime endDate) {
         this.title = title;
         // Pour permettre de les distinguer les instances
-        this.hash = Objects.hash(title, creator, (new Date()).getTime());
+        this.hash = Objects.hash(title, creatorLogin, (new Date()).getTime());
         this.startDate = startDate;
         this.endDate = endDate;
-        this.players = new ArrayList<>();
+        this.playerLogins = new ArrayList<>();
         this.comments = new ArrayList<>();
-        this.addPlayer(creator);
+        this.addPlayer(creatorLogin);
     }
 
     /**
      * Création d'une réservation.
      * @param title Texte indiqué dans lea réservation
-     * @param creator Login de l'utilisateur créateur
+     * @param creatorLogin Login de l'utilisateur créateur
      * @param startDate Date et heure de début de la réservation
      * @param duration Durée de la réservation
      */
-    public Resa(String title, User creator, LocalDateTime startDate, Duration duration) {
-        this(title, creator, startDate, startDate.plus(duration));
+    public Resa(String title, String creatorLogin, LocalDateTime startDate, Duration duration) {
+        this(title, creatorLogin, startDate, startDate.plus(duration));
     }
 
     public String getTitle() {
@@ -63,7 +63,7 @@ public class Resa {
     }
 
     public boolean isCompleted() {
-        return this.players.size() >= MAX_PLAYERS;
+        return this.playerLogins.size() >= MAX_PLAYERS;
     }
 
     public LocalDateTime getStartDate() {
@@ -90,29 +90,28 @@ public class Resa {
         this.endDate = startDate.plus(duration);
     }
 
-    public List<User> getPlayers() {
-        return players;
+    public List<String> getPlayerLogins() {
+        return playerLogins;
     }
 
-    public User getPlayer(int index) {
-        return players.get(index);
+    public String getPlayerLogin(int index) {
+        return playerLogins.get(index);
     }
 
-    public boolean hasPlayer(User player) {
-        return players.contains(player);
+    public boolean hasPlayer(String login) {
+        return playerLogins.contains(login);
     }
 
-    public boolean addPlayer(User player) {
-        if(hasPlayer(player) || isCompleted()) {
+    public boolean addPlayer(String login) {
+        if(hasPlayer(login) || isCompleted()) {
             return false;
         }
-        return players.add(player);
+        return playerLogins.add(login);
     }
 
-    public boolean removePlayer(User player) {
-        return players.remove(player);
+    public boolean removePlayer(String login) {
+        return playerLogins.remove(login);
     }
-
     public List<String> getComments() {
         return comments;
     }
