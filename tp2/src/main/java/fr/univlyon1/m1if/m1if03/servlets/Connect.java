@@ -41,10 +41,8 @@ public class Connect extends HttpServlet {
         String operation = request.getParameter("operation");
 
         if ("connect".equals(operation)) {
-            System.out.println("Handling connect operation");
             handleConnect(request, response);
         } else {
-            System.out.println("Invalid operation: " + operation);
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Operation not supported: " + operation);
         }
     }
@@ -66,11 +64,10 @@ public class Connect extends HttpServlet {
         String name = request.getParameter("name");
         User user = new User(login, name);
 
-        HttpSession session = request.getSession();
-        session.setAttribute("user", user);
-
         try {
             users.add(user);
+            HttpSession session = request.getSession(true);
+            session.setAttribute("user", user);
             request.getRequestDispatcher("interface.jsp").forward(request, response);
         } catch (NameAlreadyBoundException e) {
             response.sendError(HttpServletResponse.SC_CONFLICT);

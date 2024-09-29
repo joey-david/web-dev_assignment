@@ -34,22 +34,17 @@ public class Auth extends HttpFilter {
         // Note :
         //   le paramètre false dans request.getSession(false) permet de récupérer null si la session n'est pas déjà créée.
         //   Sinon, l'appel de la méthode getSession() la crée automatiquement.
-        if(url.equals("/") || url.equals("/index.html") || request.getSession(false) != null) {
+        if(url.equals("/") || url.equals("/index.html") || url.startsWith("/resas")) {
             chain.doFilter(request, response);
             return;
         }
 
-        // Traite les formulaires d'authentification
-        String login = request.getParameter("login");
-        if(request.getMethod().equals("POST") && login != null && !login.isEmpty()) {
-            // Gestion de la session utilisateur
-            HttpSession session = request.getSession(true);
-            session.setAttribute("user", new User(login, request.getParameter("name")));
+        HttpSession session = request.getSession(false);
+        if(session != null && session.getAttribute("user") != null) {
             chain.doFilter(request, response);
-            return;
+        } else {
+            // Bloque les autres requêtes
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Vous devez vous connecter pour accéder au site.");
         }
-
-        // Bloque les autres requêtes
-        response.sendError(HttpServletResponse.SC_FORBIDDEN, "Vous devez vous connecter pour accéder au site.");
     }
 }
