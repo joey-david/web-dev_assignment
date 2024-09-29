@@ -38,22 +38,7 @@ public class Connect extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doPost method called");
-
-        // Print all parameters
-        System.out.println("All parameters:");
-        request.getParameterMap().forEach((key, value) ->
-                System.out.println(key + ": " + String.join(", ", value))
-        );
-
-        // Print request details
-        System.out.println("Request method: " + request.getMethod());
-        System.out.println("Request URI: " + request.getRequestURI());
-        System.out.println("Content type: " + request.getContentType());
-        System.out.println("Character encoding: " + request.getCharacterEncoding());
-
         String operation = request.getParameter("operation");
-        System.out.println("Operation: " + operation);
 
         if ("connect".equals(operation)) {
             System.out.println("Handling connect operation");
