@@ -23,7 +23,7 @@
         <div>
             <a href="userlist.jsp">Utilisateurs</a>
             <br>
-            <a href="deco">D&eacute;connexion</a>
+            <a href="resas?operation=disconnect">D&eacute;connexion</a>
         </div>
     </aside>
 

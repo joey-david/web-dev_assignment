@@ -2,11 +2,8 @@ package fr.univlyon1.m1if.m1if03.servlets;
 
 import fr.univlyon1.m1if.m1if03.classes.User;
 
-import fr.univlyon1.m1if.m1if03.daos.Dao;
-import fr.univlyon1.m1if.m1if03.daos.ResaDao;
 import fr.univlyon1.m1if.m1if03.daos.UserDao;
 import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import javax.naming.NameAlreadyBoundException;
+import javax.naming.NameNotFoundException;
 import java.io.IOException;
 
 /**
@@ -29,40 +27,82 @@ public class Connect extends HttpServlet {
     // Elles seront stockées dans le contexte applicatif pour pouvoir être accédées par tous les objets de l'application :
 
     // Map d'objets User
-    private final Dao<User> users = new UserDao();
-    private final ResaDao resas = new ResaDao();
+    private UserDao users;
+
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        // Cette instruction doit toujours être au début de la méthode init() pour pouvoir accéder à l'objet config.
         super.init(config);
-        //Récupère le contexte applicatif et y place les variables globales
-        ServletContext context = config.getServletContext();
-        context.setAttribute("users", users);
-        context.setAttribute("resas", resas);
+        this.users = (UserDao) config.getServletContext().getAttribute("users");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Récupère l'User dans l'attribut de session et le place dans la map (qui est un attribut de contexte)
+        System.out.println("doPost method called");
+
+        // Print all parameters
+        System.out.println("All parameters:");
+        request.getParameterMap().forEach((key, value) ->
+                System.out.println(key + ": " + String.join(", ", value))
+        );
+
+        // Print request details
+        System.out.println("Request method: " + request.getMethod());
+        System.out.println("Request URI: " + request.getRequestURI());
+        System.out.println("Content type: " + request.getContentType());
+        System.out.println("Character encoding: " + request.getCharacterEncoding());
+
+        String operation = request.getParameter("operation");
+        System.out.println("Operation: " + operation);
+
+        if ("connect".equals(operation)) {
+            System.out.println("Handling connect operation");
+            handleConnect(request, response);
+        } else {
+            System.out.println("Invalid operation: " + operation);
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Operation not supported: " + operation);
+        }
+    }
+
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String operation = request.getParameter("operation");
+
+        if ("disconnect".equals(operation)) {
+            handleDisconnect(request, response);
+        } else {
+            response.sendRedirect("index.html");
+        }
+    }
+
+    private void handleConnect(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String login = request.getParameter("login");
+        String name = request.getParameter("name");
+        User user = new User(login, name);
+
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        session.setAttribute("user", user);
+
         try {
             users.add(user);
-            // Utilise un RequestDispatcher pour "transférer" la requête à un autre objet, en interne du serveur.
-            // Ceci n'est pas une redirection HTTP ; le client n'est pas informé de cette redirection.
-            // Note :
-            //     il existe deux méthodes pour transférer une requête (et une réponse) à l'aide d'un RequestDispatcher : include et forward
-            //     voir les différences ici : https://docs.oracle.com/javaee/6/tutorial/doc/bnagi.html
             request.getRequestDispatcher("interface.jsp").forward(request, response);
         } catch (NameAlreadyBoundException e) {
             response.sendError(HttpServletResponse.SC_CONFLICT);
         }
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Ceci est une redirection HTTP ; le client est informé qu'il doit requêter une autre ressource
+    private void handleDisconnect(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            User user = (User) session.getAttribute("user");
+            if (user != null) {
+                try {
+                    users.deleteById(user.getLogin());
+                } catch (NameNotFoundException ignored) {}
+            }
+            session.invalidate();
+        }
         response.sendRedirect("index.html");
     }
 }
