@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "Authorization", urlPatterns = {"/user.jsp", "/userlist.jsp"})
+@WebFilter(filterName = "Authorization", urlPatterns = {"user.jsp"})
 public class Authorization extends HttpFilter {
 
     @Override
@@ -22,6 +22,8 @@ public class Authorization extends HttpFilter {
             String requestedLogin = request.getParameter("user");
             System.out.println("Current user: " + (currentUser != null ? currentUser.getLogin() : "null"));
             System.out.println("Requested login: " + requestedLogin);
+
+
 
             if (currentUser != null) {
                 if ("/user.jsp".equals(request.getServletPath())) {
@@ -36,9 +38,6 @@ public class Authorization extends HttpFilter {
                         return;
                     }
                 }
-            } else {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Vous devez être connecté pour effectuer cette action.");
-                return;
             }
         } else {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Session invalide. Veuillez vous reconnecter.");
