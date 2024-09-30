@@ -13,17 +13,17 @@
 <div>
     Login : ${user.login}<br>
     <form method="post" action="userlist.jsp" target="_parent">
-        <label for="name">Prénom : <input type="text" name="name" id="name" value="${user.name}"></label>&nbsp;
+        <label for="name">PrÃ©nom : <input type="text" name="name" id="name" value="${user.name}"></label>&nbsp;
         <input type="submit" value="Modification">
         <input type="hidden" name="login" value="${user.login}">
     </form>
     <c:if test="${sessionScope.login.equals(user.login)}">
     <br>
-    Todos:
+    Resas:
     <ul>
-        <c:forEach items="${applicationScope.todos}" var="todo">
-            <c:if test="${todo.assignee != null && todo.assignee.equals(user)}">
-                <li><a href="todolist#${todo.hashCode()}">${todo.title}</a></li>
+        <c:forEach items="${applicationScope.resas}" var="resa">
+            <c:if test="${resa.assignee != null && resa.assignee.equals(user)}">
+                <li><a href="resalist#${resa.hashCode()}">${resa.title}</a></li>
             </c:if>
         </c:forEach>
     </ul>
