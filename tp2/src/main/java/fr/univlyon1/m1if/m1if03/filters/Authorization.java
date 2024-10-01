@@ -15,13 +15,10 @@ public class Authorization extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        System.out.println("Dans le filtre");
         HttpSession session = request.getSession(false);
         if (session != null) {
             User currentUser = (User) session.getAttribute("user");
             String requestedLogin = request.getParameter("user");
-            System.out.println("Current User: " + currentUser);
-            System.out.println("Requested Login: " + requestedLogin);
 
             if (currentUser != null) {
                 if ("/user".equals(request.getServletPath())) {
