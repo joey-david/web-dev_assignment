@@ -12,7 +12,7 @@
 <body>
 <header>
     <h1 class="header-titre">Réservation de courts de tennis</h1>
-    <p class="header-user">Bonjour <strong><a href="user.jsp?user=<jsp:getProperty name="user" property="login"/>"><jsp:getProperty name="user" property="name"/></a></strong>,<br>
+    <p class="header-user">Bonjour <strong><a href="user?user=<jsp:getProperty name="user" property="login"/>"><jsp:getProperty name="user" property="name"/></a></strong>,<br>
         il y a actuellement <%=((Dao<User>) (application.getAttribute("users"))).findAll().size()%> utilisateur(s) connect&eacute;(s).
     </p>
 </header>
@@ -21,7 +21,7 @@
     <aside class="menu">
         <h2>Menu</h2>
         <div>
-            <a href="userlist.jsp">Utilisateurs</a>
+            <a href="users">Utilisateurs</a>
             <br>
             <a href="resas?operation=disconnect">D&eacute;connexion</a>
         </div>

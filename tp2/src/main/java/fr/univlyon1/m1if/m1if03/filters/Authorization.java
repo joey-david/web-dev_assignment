@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "Authorization", urlPatterns = {"user.jsp"})
+@WebFilter(filterName = "Authorization", urlPatterns = {"user"})
 public class Authorization extends HttpFilter {
 
     @Override
@@ -20,18 +20,16 @@ public class Authorization extends HttpFilter {
         if (session != null) {
             User currentUser = (User) session.getAttribute("user");
             String requestedLogin = request.getParameter("user");
-            System.out.println("Current user: " + (currentUser != null ? currentUser.getLogin() : "null"));
-            System.out.println("Requested login: " + requestedLogin);
-
-
+            System.out.println("Current User: " + currentUser);
+            System.out.println("Requested Login: " + requestedLogin);
 
             if (currentUser != null) {
-                if ("/user.jsp".equals(request.getServletPath())) {
+                if ("/user".equals(request.getServletPath())) {
                     if (requestedLogin != null && !currentUser.getLogin().equals(requestedLogin)) {
                         response.sendError(HttpServletResponse.SC_FORBIDDEN, "Vous n'avez pas accès à cet utilisateur.");
                         return;
                     }
-                } else if ("/userlist.jsp".equals(request.getServletPath()) && "POST".equalsIgnoreCase(request.getMethod())) {
+                } else if ("/users".equals(request.getServletPath()) && "POST".equalsIgnoreCase(request.getMethod())) {
                     String loginToModify = request.getParameter("login");
                     if (!currentUser.getLogin().equals(loginToModify)) {
                         response.sendError(HttpServletResponse.SC_FORBIDDEN, "Vous n'avez pas le droit de modifier cet utilisateur.");

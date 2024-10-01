@@ -85,6 +85,6 @@ public class Connect extends HttpServlet {
             }
             session.invalidate();
         }
-        response.sendRedirect("index.html");
+        response.sendRedirect(request.getContextPath());
     }
 }

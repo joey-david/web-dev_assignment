@@ -19,7 +19,7 @@
     </filter-mapping>
     <filter-mapping>
         <filter-name>Authorization</filter-name>
-        <url-pattern>/user.jsp</url-pattern>
+        <url-pattern>/user</url-pattern>
     </filter-mapping>
 
 </web-app>

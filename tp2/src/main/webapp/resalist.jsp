@@ -1,9 +1,7 @@
 <%@ page import="java.time.format.DateTimeFormatter" %>
-<%@ page import="fr.univlyon1.m1if.m1if03.daos.ResaDao" %>
 <%@ page import="fr.univlyon1.m1if.m1if03.classes.Resa" %>
 <%@ page import="fr.univlyon1.m1if.m1if03.classes.User" %>
 <%@ page import="fr.univlyon1.m1if.m1if03.daos.UserDao" %>
-<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
@@ -31,64 +29,40 @@
     </tr>
     </thead>
     <tbody>
-    <%
-        ResaDao resaDao = (ResaDao) application.getAttribute("resas");
-        UserDao userDao = (UserDao) application.getAttribute("users");
-
-        List<Resa> reservations = resaDao.findAllReservations();
-
-        for (Resa resa : reservations) {
-            request.setAttribute("resa", resa);
-    %>
-    <form method="POST" action="resalist">
-        <tr id="<%= resa.hashCode() %>">
-            <td><%= resa.isCompleted() ? "&#x2611;" : "&#x2610;" %></td>
-            <td><em><%= resa.getTitle() %></em></td>
-            <td><em><%= resa.getStartDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) %></em></td>
-            <td><em><%= resa.getStartDate().format(DateTimeFormatter.ofPattern("HH:mm")) %></em></td>
-            <td><em><%= resa.getEndDate().format(DateTimeFormatter.ofPattern("HH:mm")) %></em></td>
-            <td><em>
-                <%
-                    List<String> playerLogins = resa.getPlayerLogins();
-                    for (String login : playerLogins) {
-                        User player = null;
-                        try {
-                            player = userDao.findOne(login);
-                        } catch (Exception e) {
-                        }
-                %>
-                <%= player != null ? player.getName() : login %><br>
-                <%
-                    }
-                %>
-            </em></td>
-            <td><em>
-                <c:if test="${resa.hasPlayer(sessionScope.user.login)}">
-                    <input type='submit' name='toggle' value='Me désinscrire'>&nbsp;
-                </c:if>
-                <c:if test="${!resa.hasPlayer(sessionScope.user.login)}">
-                    <input type='submit' name='toggle' value="M'inscrire">&nbsp;
-                </c:if>
-            </em></td>
-            <td>
-                <%
-                    List<String> comments = resa.getComments();
-                    for (String comment : comments) {
-                %>
-                <%= comment %><br>
-                <%
-                    }
-                %>
-                <textarea name='commentData'></textarea>
-            </td>
-            <td><input type='submit' name='comment' value='Commenter'></td>
-        </tr>
-        <input type='hidden' name='operation' value='update'>
-        <input type='hidden' name='index' value='<%= reservations.indexOf(resa) %>'>
-    </form>
-    <%
-        }
-    %>
+    <c:forEach var="resa" items="${reservations}" varStatus="status">
+        <form method="POST" action="resalist">
+            <tr id="${resa.hashCode()}">
+                <td>${resa.completed ? "&#x2611;" : "&#x2610;"}</td>
+                <td><em>${resa.title}</em></td>
+                <td><em>${resa.startDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))}</em></td>
+                <td><em>${resa.startDate.format(DateTimeFormatter.ofPattern("HH:mm"))}</em></td>
+                <td><em>${resa.endDate.format(DateTimeFormatter.ofPattern("HH:mm"))}</em></td>
+                <td><em>
+                    <c:forEach var="login" items="${resa.playerLogins}">
+                        <c:set var="player" value="${userDao.findOne(login)}" />
+                        ${player != null ? player.name : login}<br>
+                    </c:forEach>
+                </em></td>
+                <td><em>
+                    <c:if test="${resa.hasPlayer(sessionScope.user.login)}">
+                        <input type='submit' name='toggle' value='Me désinscrire'>&nbsp;
+                    </c:if>
+                    <c:if test="${!resa.hasPlayer(sessionScope.user.login)}">
+                        <input type='submit' name='toggle' value="M'inscrire">&nbsp;
+                    </c:if>
+                </em></td>
+                <td>
+                    <c:forEach var="comment" items="${resa.comments}">
+                        ${comment}<br>
+                    </c:forEach>
+                    <textarea name='commentData'></textarea>
+                </td>
+                <td><input type='submit' name='comment' value='Commenter'></td>
+            </tr>
+            <input type='hidden' name='operation' value='update'>
+            <input type='hidden' name='index' value='${status.index}'>
+        </form>
+    </c:forEach>
     </tbody>
 </table>
 <script>
