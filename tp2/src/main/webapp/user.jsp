@@ -1,3 +1,4 @@
+<jsp:useBean id="user" scope="request" type="fr.univlyon1.m1if.m1if03.classes.User"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
@@ -12,7 +13,7 @@
 <div>
     Login : ${user.login}<br>
     <form method="post" action="user">
-        <label for="name">PrÃ©nom :
+        <label for="name">Prénom :
             <input type="text" name="name" id="name" value="${user.name}">
         </label>&nbsp;
         <input type="submit" value="Modifier">
