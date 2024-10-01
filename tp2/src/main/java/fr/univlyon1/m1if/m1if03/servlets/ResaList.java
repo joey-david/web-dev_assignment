@@ -42,11 +42,11 @@ public class ResaList extends HttpServlet {
         List<Resa> reservations = resaDao.findAllReservations();
         request.setAttribute("reservations", reservations);
         request.setAttribute("userDao", userDao);
-        request.getRequestDispatcher("resalist.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/components/resalist.jsp").forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
             switch (request.getParameter("operation")) {
                 case "add" -> handleAddOperation(request);

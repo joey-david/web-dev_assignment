@@ -1,7 +1,6 @@
 package fr.univlyon1.m1if.m1if03.servlets;
 
 import fr.univlyon1.m1if.m1if03.classes.User;
-
 import fr.univlyon1.m1if.m1if03.daos.UserDao;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -51,11 +50,10 @@ public class Connect extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String operation = request.getParameter("operation");
-
         if ("disconnect".equals(operation)) {
             handleDisconnect(request, response);
         } else {
-            response.sendRedirect("index.html");
+            handleDisplayInterface(request, response);
         }
     }
 
@@ -68,7 +66,7 @@ public class Connect extends HttpServlet {
             users.add(user);
             HttpSession session = request.getSession(true);
             session.setAttribute("user", user);
-            request.getRequestDispatcher("interface.jsp").forward(request, response);
+            handleDisplayInterface(request, response);
         } catch (NameAlreadyBoundException e) {
             response.sendError(HttpServletResponse.SC_CONFLICT);
         }
@@ -86,5 +84,11 @@ public class Connect extends HttpServlet {
             session.invalidate();
         }
         response.sendRedirect(request.getContextPath());
+    }
+
+    private void handleDisplayInterface(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int connectedUsersCount = users.findAll().size();
+        request.setAttribute("connectedUsersCount", connectedUsersCount);
+        request.getRequestDispatcher("WEB-INF/components/interface.jsp").forward(request, response);
     }
 }
