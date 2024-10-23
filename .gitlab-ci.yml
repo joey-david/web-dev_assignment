@@ -16,6 +16,6 @@ deploy:
   script:
     - cd $TP_DIR
     - mvn clean package
-    - scp -i gitlabci_key.pem -o StrictHostKeyChecking=no target/*.war gitlabci@192.168.75.122:/opt/tomcat/webapps/$DEPLOY_PATH.war
+    - scp -i $CI_SSH_KEY -o StrictHostKeyChecking=no target/*.war gitlabci@192.168.75.122:/opt/tomcat/webapps/$DEPLOY_PATH.war
   after_script:
     - rm gitlabci_key.pem
