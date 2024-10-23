@@ -1,0 +1,21 @@
+image: maven:3-eclipse-temurin-21-alpine
+
+variables:
+  TP_DIR: "tp2"
+  DEPLOY_PATH: "v1" 
+
+deploy:
+  only:
+    - main
+  before_script:
+    - chmod +x ci/setup-mvn-proxy.sh
+    - ./ci/setup-mvn-proxy.sh
+    - echo "$CI_SSH_KEY" > gitlabci_key.pem
+    - chmod 400 gitlabci_key.pem
+    - apk add openssh-client
+  script:
+    - cd $TP_DIR
+    - mvn clean package
+    - scp -i gitlabci_key.pem -o StrictHostKeyChecking=no target/*.war gitlabci@192.168.75.122:/opt/tomcat/webapps/$DEPLOY_PATH.war
+  after_script:
+    - rm gitlabci_key.pem
