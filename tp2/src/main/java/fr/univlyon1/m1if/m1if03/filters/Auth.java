@@ -1,7 +1,5 @@
 package fr.univlyon1.m1if.m1if03.filters;
 
-import fr.univlyon1.m1if.m1if03.classes.User;
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;

@@ -10,7 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 
-@WebServlet(name = "Init", value="/init", loadOnStartup = 1)
+@WebServlet(name = "Init", value = "/init", loadOnStartup = 1)
 public class Init extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
