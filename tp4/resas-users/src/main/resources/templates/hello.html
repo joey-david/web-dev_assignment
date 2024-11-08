@@ -9,7 +9,7 @@
 
 <header>
     <h1 class="header-titre">Réservation de courts de tennis</h1>
-    <p class="header-user"><strong><span th:text="|Bonjour, ${name} !|" /></strong></p>
+    <p class="header-user"><strong><span th:text="|Bonjour, ${user.getName()} !|" /></strong></p>
 </header>
 
 <div class="wrapper">
@@ -31,6 +31,8 @@
     <article class="contenu">
         <p>Rajouter les informations utilisateur ici en utilisant un objet <code>Model</code> contenant un objet <code>User</code>.</p>
         <p>Voir doc de <a href="https://www.thymeleaf.org/">Thymeleaf</a>.</p>
+        <p th:text="'Nom de l\'utilisateur: ' + ${user.getName()}"> </p>
+        <p th:text="'Login de l\'utilisateur: ' + ${user.getLogin()}"></p>
     </article>
 </div>
 

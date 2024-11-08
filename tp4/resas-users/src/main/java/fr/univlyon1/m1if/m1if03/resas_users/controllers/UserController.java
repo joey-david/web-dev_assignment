@@ -1,5 +1,6 @@
 package fr.univlyon1.m1if.m1if03.resas_users.controllers;
 
+import fr.univlyon1.m1if.m1if03.resas_users.classes.User;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -20,9 +21,11 @@ public class UserController {
     }
 
     @PostMapping("/connect")
-    public ModelAndView greeting(@RequestParam(name="name", required=false, defaultValue="inconnu") String name)  {
+    public ModelAndView greeting(@RequestParam(name="login") String login,
+                                 @RequestParam(name="name", required=false, defaultValue="inconnu") String name)  {
         Map<String, Object> model = new ModelMap("name");
-        model.put("name", name);
+        User user = new User(login, name);
+        model.put("user", user);
         return new ModelAndView("hello", model);
     }
 
