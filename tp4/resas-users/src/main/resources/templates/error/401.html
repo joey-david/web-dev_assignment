@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Erreur d'authentification</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <div class="error-container">
+        <h1>Erreur d'authentification</h1>
+        <p th:text="${message}">Vous devez vous connecter pour accéder au site.</p>
+        <a href="/" class="button">Retour à la page de connexion</a>
+    </div>
+</body>
+</html>

@@ -9,7 +9,10 @@
 
 <header>
     <h1 class="header-titre">Réservation de courts de tennis</h1>
-    <p class="header-user"><strong><span th:text="|Bonjour, ${user.getName()} !|" /></strong></p>
+    <p class="header-user"><strong>
+        <span th:if="${user}" th:text="|Bonjour, ${user.getName()} !|" />
+        <span th:unless="${user}" th:text="'Bonjour, Visiteur !'"></span>
+    </strong></p>
 </header>
 
 <div class="wrapper">
@@ -22,17 +25,25 @@
             <br>
             <a href="javascript:sayHelloTo()">Dire bonjour à l'utilisateur</a> <input id="other">
             <br>
-            <a href="list">Lister les utilisateurs</a> (todo)
+            <a href="list">Lister les utilisateurs</a>
             <br>
-            <a href="deco">Se d&eacute;connecter</a> (todo)
+            <a href="deco">Se d&eacute;connecter</a>
         </div>
     </aside>
 
     <article class="contenu">
-        <p>Rajouter les informations utilisateur ici en utilisant un objet <code>Model</code> contenant un objet <code>User</code>.</p>
-        <p>Voir doc de <a href="https://www.thymeleaf.org/">Thymeleaf</a>.</p>
-        <p th:text="'Nom de l\'utilisateur: ' + ${user.getName()}"> </p>
-        <p th:text="'Login de l\'utilisateur: ' + ${user.getLogin()}"></p>
+        <div th:if="${user}">
+            <p th:text="'Nom de l\'utilisateur: ' + ${user.getName()}"> </p>
+            <p th:text="'Login de l\'utilisateur: ' + ${user.getLogin()}"></p>
+        </div>
+        <div th:if="${users}">
+            <h3> Liste des utilisateurs </h3>
+            <ul>
+                <li th:each="u : ${users}">
+                    <p><strong>Nom: </strong><span th:text="${u.getName()}"></span></p>
+                </li>
+            </ul>
+        </div>
     </article>
 </div>
 
