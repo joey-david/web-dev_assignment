@@ -1,0 +1,3785 @@
+{
+	"info": {
+		"_postman_id": "489d248e-db3d-482e-8345-60db9b4bc24d",
+		"name": "Mif-Resas",
+		"description": "Description de l'API du serveur de gestion des ressources de l'application \"MIF-Resas\".<br>Vous pouvez changer l'URL dans <code>servers</code> pour l'adapter au déploiement que vous souhaitez tester. Les autres valeurs ne doivent pas être modifiées.<br>**Pour tester les requêtes avec _Try it out_, il vous faut rajouter la configuration du CorsFilter de Tomcat** (voir énoncé du TP).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30541291"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "{userId}",
+					"item": [
+						{
+							"name": "ownedReservations",
+							"item": [
+								{
+									"name": "Récupérer la collection des réservations réalisées par un utilisateur",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId/ownedReservations",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId",
+												"ownedReservations"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "{{user1Login}}",
+													"description": "(Required) Login de l'utilisateur"
+												}
+											]
+										},
+										"description": "Renvoie la collection des réservations réalisées par un utilisateur"
+									},
+									"response": [
+										{
+											"name": "successful operation",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:userId/ownedReservations",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":userId",
+														"ownedReservations"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"description": "(Required) Login de l'utilisateur"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  \"<string>\",\n  \"<string>\"\n]"
+										},
+										{
+											"name": "Utilisateur non authentifié",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:userId/ownedReservations",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":userId",
+														"ownedReservations"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"description": "(Required) Login de l'utilisateur"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Utilisateur authentifié avec un autre login",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:userId/ownedReservations",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":userId",
+														"ownedReservations"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"description": "(Required) Login de l'utilisateur"
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Utilisateur non trouvé",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:userId/ownedReservations",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":userId",
+														"ownedReservations"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"description": "(Required) Login de l'utilisateur"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "Récupérer une sous-propriété de la collection des réservations réalisées par un utilisateur",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId/ownedReservations/0/test",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId",
+												"ownedReservations",
+												"0",
+												"test"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "{{user1Login}}",
+													"description": "(Required) Login de l'utilisateur"
+												}
+											]
+										},
+										"description": "Redirige vers la sous-propriété par l'URL du reservation"
+									},
+									"response": [
+										{
+											"name": "Redirection vers la sous-ressource correspondante de la collection de reservations (pas de test d'existence)",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:userId/ownedReservations/*",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":userId",
+														"ownedReservations",
+														"*"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"description": "(Required) Login de l'utilisateur"
+														}
+													]
+												}
+											},
+											"status": "Found",
+											"code": 302,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Location",
+													"value": "<string>",
+													"description": "l'URL (locale) de la sous-ressource correspondante de la collection de reservations"
+												},
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Utilisateur non authentifié",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:userId/ownedReservations/*",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":userId",
+														"ownedReservations",
+														"*"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"description": "(Required) Login de l'utilisateur"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Utilisateur non trouvé",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:userId/ownedReservations/*",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":userId",
+														"ownedReservations",
+														"*"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"description": "(Required) Login de l'utilisateur"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "registeredReservations",
+							"item": [
+								{
+									"name": "Récupérer la collection des réservations auxquelles un utilisateur est inscrit",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId/registeredReservations",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId",
+												"registeredReservations"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "{{user1Login}}",
+													"description": "(Required) Login de l'utilisateur"
+												}
+											]
+										},
+										"description": "Renvoie la collection des réservations auxquelles un utilisateur est inscrit"
+									},
+									"response": [
+										{
+											"name": "successful operation",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:userId/registeredReservations",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":userId",
+														"registeredReservations"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"description": "(Required) Login de l'utilisateur"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  \"<string>\",\n  \"<string>\"\n]"
+										},
+										{
+											"name": "Utilisateur non authentifié",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:userId/registeredReservations",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":userId",
+														"registeredReservations"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"description": "(Required) Login de l'utilisateur"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Utilisateur authentifié avec un autre login",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:userId/registeredReservations",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":userId",
+														"registeredReservations"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"description": "(Required) Login de l'utilisateur"
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Utilisateur non trouvé",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:userId/registeredReservations",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":userId",
+														"registeredReservations"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"description": "(Required) Login de l'utilisateur"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "Récupérer une sous-propriété de la collection des réservations auxquelles un utilisateur est inscrit",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId/registeredReservations/0/test",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId",
+												"registeredReservations",
+												"0",
+												"test"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "{{user1Login}}",
+													"description": "(Required) Login de l'utilisateur"
+												}
+											]
+										},
+										"description": "Redirige vers la sous-propriété par l'URL du reservation"
+									},
+									"response": [
+										{
+											"name": "Redirection vers la sous-ressource correspondante de la collection de reservations (pas de test d'existence)",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:userId/registeredReservations/*",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":userId",
+														"registeredReservations",
+														"*"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"description": "(Required) Login de l'utilisateur"
+														}
+													]
+												}
+											},
+											"status": "Found",
+											"code": 302,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Location",
+													"value": "<string>",
+													"description": "l'URL (locale) de la sous-ressource correspondante de la collection de reservations"
+												},
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Utilisateur non authentifié",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:userId/registeredReservations/*",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":userId",
+														"registeredReservations",
+														"*"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"description": "(Required) Login de l'utilisateur"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Utilisateur non trouvé",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/users/:userId/registeredReservations/*",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"users",
+														":userId",
+														"registeredReservations",
+														"*"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "<string>",
+															"description": "(Required) Login de l'utilisateur"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Récupérer un utilisateur",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "{{user1Login}}",
+											"description": "(Required) Login de l'utilisateur"
+										}
+									]
+								},
+								"description": "Renvoie une représentation d'un utilisateur. Cette représentation est complète si l'utilisateur est l'auteur de la requête, et partielle (sans les réservations réalisées) sinon."
+							},
+							"response": [
+								{
+									"name": "successful operation",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"description": "(Required) Login de l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"login\": \"<string>\",\n  \"name\": \"<string>\",\n  \"ownedReservations\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}"
+								},
+								{
+									"name": "Utilisateur non authentifié",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"description": "(Required) Login de l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Utilisateur non trouvé",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"description": "(Required) Login de l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Créer ou mettre à jour un utilisateur",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"login\":\"{{user1Login}}\",\"name\":\"{{user1Name2}}\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "{{user1Login}}",
+											"description": "(Required) Login de l'utilisateur"
+										}
+									]
+								},
+								"description": "Crée un utilisateur s'il est \"complet\" et le met à jour si seul le champ nom est passé en paramètre"
+							},
+							"response": [
+								{
+									"name": "Utilisateur créé.",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "login",
+													"value": "<string>"
+												},
+												{
+													"key": "name",
+													"value": "<string>"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"description": "(Required) Login de l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Location",
+											"value": "<string>",
+											"description": "l'URL (locale) de l'utilisateur créé"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Utilisateur modifié",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "login",
+													"value": "<string>"
+												},
+												{
+													"key": "name",
+													"value": "<string>"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"description": "(Required) Login de l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Paramètres de la requête non acceptables",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "login",
+													"value": "<string>"
+												},
+												{
+													"key": "name",
+													"value": "<string>"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"description": "(Required) Login de l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Utilisateur non authentifié",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "login",
+													"value": "<string>"
+												},
+												{
+													"key": "name",
+													"value": "<string>"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"description": "(Required) Login de l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Utilisateur authentifié avec un autre login",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "login",
+													"value": "<string>"
+												},
+												{
+													"key": "name",
+													"value": "<string>"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"description": "(Required) Login de l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Utilisateur non trouvé",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "login",
+													"value": "<string>"
+												},
+												{
+													"key": "name",
+													"value": "<string>"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"description": "(Required) Login de l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Supprimer un utilisateur",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "{{user1Login}}",
+											"description": "(Required) Id de l'utilisateur"
+										}
+									]
+								},
+								"description": "Supprime un utilisateur de la collection d'utilisateurs. Renvoie un code 204 si l'utilisateur était bien dans la collection, ou un 404 sinon."
+							},
+							"response": [
+								{
+									"name": "Utilisateur supprimé",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"description": "(Required) Id de l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Utilisateur non authentifié",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"description": "(Required) Id de l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Utilisateur non trouvé",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"description": "(Required) Id de l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Récupérer le nom d'un utilisateur",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/:userId/name",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":userId",
+										"name"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "{{user1Login}}",
+											"description": "(Required) Login de l'utilisateur"
+										}
+									]
+								},
+								"description": "Renvoie le nom d'un utilisateur"
+							},
+							"response": [
+								{
+									"name": "successful operation",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId/name",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId",
+												"name"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"description": "(Required) Login de l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"name\": \"<string>\"\n}"
+								},
+								{
+									"name": "Utilisateur non authentifié",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId/name",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId",
+												"name"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"description": "(Required) Login de l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Utilisateur non trouvé",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:userId/name",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":userId",
+												"name"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "<string>",
+													"description": "(Required) Login de l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Créer un utilisateur",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"login\":\"{{user1Login}}\",\"name\":\"{{user1Name}}\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "Crée un utilisateur avec un login et nom. Remarque : il est créé si le login n'existait pas déjà. Dans ce cas, on renvoie un code 201. Sinon, on renvoie un 409 (Conflict)."
+					},
+					"response": [
+						{
+							"name": "Utilisateur créé.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "login",
+											"value": "<string>",
+											"description": "(Required) "
+										},
+										{
+											"key": "name",
+											"value": "<string>"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Location",
+									"value": "<string>",
+									"description": "l'URL (locale) de l'utilisateur créé"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Paramètres de la requête non acceptables",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "login",
+											"value": "<string>",
+											"description": "(Required) "
+										},
+										{
+											"key": "name",
+											"value": "<string>"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Un utilisateur avec ce login existe déjà",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "login",
+											"value": "<string>",
+											"description": "(Required) "
+										},
+										{
+											"key": "name",
+											"value": "<string>"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Récupérer la collection d'utilisateurs",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "Renvoie les URI de tous les utilisateurs"
+					},
+					"response": [
+						{
+							"name": "successful operation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  \"<string>\",\n  \"<string>\"\n]"
+						}
+					]
+				},
+				{
+					"name": "Connecter un utilisateur (opération métier)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"login\":\"{{user1Login}}\",\"name\":\"{{user1Name}}\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						},
+						"description": "Connecte un utilisateur à l'aide d'un token JWT. Renvoie un code 204 si le login et le mot de passe correspondent, 401 sinon."
+					},
+					"response": [
+						{
+							"name": "Utilisateur logué.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "login",
+											"value": "<string>",
+											"description": "(Required) "
+										},
+										{
+											"key": "name",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Location",
+									"value": "<string>",
+									"description": "URL de l'utilisateur"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Paramètres de la requête non acceptables",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "login",
+											"value": "<string>",
+											"description": "(Required) "
+										},
+										{
+											"key": "name",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Les login et mot de passe ne correspondent pas",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "login",
+											"value": "<string>",
+											"description": "(Required) "
+										},
+										{
+											"key": "name",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Utilisateur non trouvé",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "login",
+											"value": "<string>",
+											"description": "(Required) "
+										},
+										{
+											"key": "name",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Déconnecter l'utilisateur connecté (opération métier)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"logout"
+							]
+						},
+						"description": "Déconnecte l'utilisateur sans l'enlever de la collection d'utilisateurs. Si vous passez l'authentification dans des headers HTTP, cette méthode ne fait rien mais répond que l'opération s'est bien passée."
+					},
+					"response": [
+						{
+							"name": "successful operation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <token>",
+										"description": "Added as a part of security scheme: bearer"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"logout"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "reservations",
+			"item": [
+				{
+					"name": "{reservationId}",
+					"item": [
+						{
+							"name": "players",
+							"item": [
+								{
+									"name": "Récupérer la collection des utilisateurs participants à une réservation",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId/players",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId",
+												"players"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "{{currentReservationId}}",
+													"description": "(Required) ID de la réservation"
+												}
+											]
+										},
+										"description": "Renvoie une collection d'IDs d'utilisateurs participants à la réservation en paramètre"
+									},
+									"response": [
+										{
+											"name": "Ressource correctement récupérée",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/reservations/:reservationId/players",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"reservations",
+														":reservationId",
+														"players"
+													],
+													"variable": [
+														{
+															"key": "reservationId",
+															"value": "<integer>",
+															"description": "(Required) ID de la réservation"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  \"<string>\",\n  \"<string>\"\n]"
+										},
+										{
+											"name": "Utilisateur non authentifié",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/reservations/:reservationId/players",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"reservations",
+														":reservationId",
+														"players"
+													],
+													"variable": [
+														{
+															"key": "reservationId",
+															"value": "<integer>",
+															"description": "(Required) ID de la réservation"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Réservation non trouvée",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/reservations/:reservationId/players",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"reservations",
+														":reservationId",
+														"players"
+													],
+													"variable": [
+														{
+															"key": "reservationId",
+															"value": "<integer>",
+															"description": "(Required) ID de la réservation"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "Récupérer une sous-propriété de la collection des participants à une réservation",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId/players/toto",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId",
+												"players",
+												"toto"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "0",
+													"description": "(Required) Login de l'utilisateur"
+												}
+											]
+										},
+										"description": "Redirige vers la sous-propriété de la collection d'utilisateurs"
+									},
+									"response": [
+										{
+											"name": "Redirection vers la sous-ressource correspondante de la collection d'utilisteurs (pas de test d'existence)",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/reservations/:reservationId/players/*",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"reservations",
+														":reservationId",
+														"players",
+														"*"
+													],
+													"variable": [
+														{
+															"key": "reservationId",
+															"value": "<string>",
+															"description": "(Required) Login de l'utilisateur"
+														}
+													]
+												}
+											},
+											"status": "Found",
+											"code": 302,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Location",
+													"value": "<string>",
+													"description": "l'URL (locale) de la sous-ressource correspondante de la collection d'utilisteurs"
+												},
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Utilisateur non authentifié",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/reservations/:reservationId/players/*",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"reservations",
+														":reservationId",
+														"players",
+														"*"
+													],
+													"variable": [
+														{
+															"key": "reservationId",
+															"value": "<string>",
+															"description": "(Required) Login de l'utilisateur"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Réservation non trouvée",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/reservations/:reservationId/players/*",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"reservations",
+														":reservationId",
+														"players",
+														"*"
+													],
+													"variable": [
+														{
+															"key": "reservationId",
+															"value": "<string>",
+															"description": "(Required) Login de l'utilisateur"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Récupérer une réservation",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/reservations/:reservationId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservations",
+										":reservationId"
+									],
+									"variable": [
+										{
+											"key": "reservationId",
+											"value": "{{currentReservationId}}",
+											"description": "(Required) ID de la réservation"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Détails de la réservation",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<string>\",\n  \"courtId\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"registeredUsers\": [\n    {\n      \"href\": \"<string>\"\n    },\n    {\n      \"href\": \"<string>\"\n    }\n  ]\n}"
+								},
+								{
+									"name": "Utilisateur non authentifié",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Réservation non trouvée",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Mise à jour d'une réservation existante",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"courtId\": \"{{court2}}\",\n    \"creatorId\": \"{{user2Login}}\",\n    \"startTime\": \"{{startTime2}}\",\n    \"endTime\": \"{{endTime2}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservations/:reservationId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservations",
+										":reservationId"
+									],
+									"variable": [
+										{
+											"key": "reservationId",
+											"value": "0",
+											"description": "(Required) ID de la réservation à mettre à jour"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Réservation correctement mise à jour",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "courtId",
+													"value": "<string>"
+												},
+												{
+													"key": "startTime",
+													"value": "<dateTime>"
+												},
+												{
+													"key": "endTime",
+													"value": "<dateTime>"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation à mettre à jour"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Paramètres de la requête non acceptables",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "courtId",
+													"value": "<string>"
+												},
+												{
+													"key": "startTime",
+													"value": "<dateTime>"
+												},
+												{
+													"key": "endTime",
+													"value": "<dateTime>"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation à mettre à jour"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Utilisateur non authentifié",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "courtId",
+													"value": "<string>"
+												},
+												{
+													"key": "startTime",
+													"value": "<dateTime>"
+												},
+												{
+													"key": "endTime",
+													"value": "<dateTime>"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation à mettre à jour"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Réservation non trouvée",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "courtId",
+													"value": "<string>"
+												},
+												{
+													"key": "startTime",
+													"value": "<dateTime>"
+												},
+												{
+													"key": "endTime",
+													"value": "<dateTime>"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation à mettre à jour"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Supprimer une réservation",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/reservations/:reservationId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservations",
+										":reservationId"
+									],
+									"variable": [
+										{
+											"key": "reservationId",
+											"value": "{{currentReservationId}}",
+											"description": "(Required) ID de la réservation à supprimer"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Réservation correctement suppprimée",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation à supprimer"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Utilisateur non authentifié",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation à supprimer"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Réservation non trouvée",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation à supprimer"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Enregistrer l'utilisateur connecté comme participant à une réservation",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservations/:reservationId/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservations",
+										":reservationId",
+										"register"
+									],
+									"variable": [
+										{
+											"key": "reservationId",
+											"value": "0",
+											"description": "(Required) ID de la réservation à laquelle enregistrer l'utilisateur"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Utilisateur correctement enregistré dans les participants à la réservation",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId",
+												"register"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation à laquelle enregistrer l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Location",
+											"value": "<string>",
+											"description": "URL du participant créé pour la réservation"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Paramètres de la requête non acceptables<br>(y compris utilisateur déjà enregistré)",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId",
+												"register"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation à laquelle enregistrer l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Utilisateur non authentifié",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId",
+												"register"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation à laquelle enregistrer l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Réservation non trouvée",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId",
+												"register"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation à laquelle enregistrer l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Supprimer l'enregistrement de l'utilisateur connecté comme participant à une réservation",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/reservations/:reservationId/unregister",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservations",
+										":reservationId",
+										"unregister"
+									],
+									"variable": [
+										{
+											"key": "reservationId",
+											"value": "0",
+											"description": "(Required) ID de la réservation de laquelle supprimer l'utilisateur"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Utilisateur correctement supprimé des participants à la réservation",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId/unregister",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId",
+												"unregister"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation de laquelle supprimer l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Paramètres de la requête non acceptables (y compris utilisateur non participant à la réservation)",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId/unregister",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId",
+												"unregister"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation de laquelle supprimer l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Utilisateur non authentifié",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId/unregister",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId",
+												"unregister"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation de laquelle supprimer l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Utilisateur authentifié avec un autre login",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId/unregister",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId",
+												"unregister"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation de laquelle supprimer l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Réservation non trouvée",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/reservations/:reservationId/unregister",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"reservations",
+												":reservationId",
+												"unregister"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "<string>",
+													"description": "(Required) ID de la réservation de laquelle supprimer l'utilisateur"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Ajouter un commentaire à une réservation",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"content\":\"Je crois qu'il va pleuvoir.\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservations/:reservationId/comment",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservations",
+										":reservationId",
+										"comment"
+									],
+									"variable": [
+										{
+											"key": "reservationId",
+											"value": "{{currentReservationId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Liste toutes les réservations",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reservations",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reservations"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Une liste d'IDs et de liens vers des réservations",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/reservations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservations"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": \"<string>\",\n    \"href\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"href\": \"<string>\"\n  }\n]"
+						}
+					]
+				},
+				{
+					"name": "Crée une nouvelle réservation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"courtId\": \"{{court1}}\",\n    \"creatorId\": \"{{user1Login}}\",\n    \"startTime\": \"{{startTime1}}\",\n    \"endTime\": \"{{endTime1}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/reservations",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reservations"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Réservation correctement créée",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <token>",
+										"description": "Added as a part of security scheme: bearer"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "courtId",
+											"value": "<string>"
+										},
+										{
+											"key": "startTime",
+											"value": "<string>"
+										},
+										{
+											"key": "endTime",
+											"value": "<string>"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservations"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Location",
+									"value": "<string>",
+									"description": "URL de la réservation créée"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Paramètres de la requête non acceptables",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <token>",
+										"description": "Added as a part of security scheme: bearer"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "courtId",
+											"value": "<string>"
+										},
+										{
+											"key": "startTime",
+											"value": "<string>"
+										},
+										{
+											"key": "endTime",
+											"value": "<string>"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservations"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Utilisateur non authentifié",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <token>",
+										"description": "Added as a part of security scheme: bearer"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "courtId",
+											"value": "<string>"
+										},
+										{
+											"key": "startTime",
+											"value": "<string>"
+										},
+										{
+											"key": "endTime",
+											"value": "<string>"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservations"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/resas",
+			"type": "string"
+		}
+	]
+}
