@@ -3,6 +3,7 @@ package fr.univlyon1.m1if.m1if03.resas_api.filter;
 import fr.univlyon1.m1if.m1if03.resas_api.connection.ConnectionManager;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,6 +21,7 @@ import java.io.IOException;
  */
 @Component
 @Order(1)
+@WebFilter
 public class AuthenticationFilter extends HttpFilter {
     @Autowired
     private ConnectionManager connectionManager;
@@ -30,7 +32,14 @@ public class AuthenticationFilter extends HttpFilter {
         String url = request.getRequestURI().replace(request.getContextPath(), "");
 
         // Laisse passer les URLs ne nécessitant pas d'authentification et les requêtes par des utilisateurs authentifiés
-        if(!url.startsWith("/users/") || url.equals("/users/login") || url.startsWith("/users/hello") || connectionManager.isConnected(request)) {
+        if(
+                (!url.startsWith("/users/") && !url.startsWith("/reservations")) || // /users/ avec un slash à la fin pour laisser passer /users
+                (url.startsWith("/users/") && request.getMethod().equals("DELETE")) ||
+                (url.equals("/users/login") && request.getMethod().equals("POST")) ||
+                (url.equals("/reservations") && request.getMethod().equals("GET")) ||
+                url.startsWith("/users/hello") ||
+                connectionManager.isConnected(request)
+        ) {
             chain.doFilter(request, response);
             return;
         }

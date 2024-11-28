@@ -26,7 +26,7 @@ import java.util.stream.Stream;
  */
 @Component
 @Order(2)
-@WebFilter(filterName = "AuthorizationFilter")
+@WebFilter
 public class AuthorizationFilter extends HttpFilter {
     @Autowired
     ConnectionManager connectionManager;

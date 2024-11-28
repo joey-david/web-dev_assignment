@@ -20,6 +20,27 @@ tags:
 
 paths:
   /users:
+    get:
+      tags:
+        - "Users"
+      summary: "Récupérer la collection d'utilisateurs"
+      description: "Renvoie les URI de tous les utilisateurs"
+      operationId: "getAllUsers"
+      responses:
+        '200':
+          description: "Liste des IDs de tous  les utilisateurs"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Users"
+              example:
+                users:
+                  - link: "users/toto"
+                  - link: "users/titi"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Users"
+              example: "<users>\n\t<link href=\"users/toto\"/>\n\t<link href=\"users/titi\"/>\n</users>"
     post:
       tags:
         - "Users"
@@ -56,27 +77,6 @@ paths:
           description: "Paramètres de la requête non acceptables"
         '409':
           description: "Un utilisateur avec ce login existe déjà"
-    get:
-      tags:
-        - "Users"
-      summary: "Récupérer la collection d'utilisateurs"
-      description: "Renvoie les URI de tous les utilisateurs"
-      operationId: "getAllUsers"
-      responses:
-        '200':
-          description: "Liste des IDs de tous  les utilisateurs"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Users"
-              example:
-                users:
-                  - "users/toto"
-                  - "users/titi"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Users"
-              example: "<users>\n\t<link href=\"users/toto\"/>\n\t<link href=\"users/titi\"/>\n</users>"
 
   /users/{userId}:
     get:
@@ -450,6 +450,8 @@ paths:
       operationId: getReservation
       tags:
         - "Réservations"
+      security:
+        - bearerAuth: []
       parameters:
         - name: reservationId
           in: path
